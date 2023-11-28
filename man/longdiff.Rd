@@ -2,32 +2,34 @@
 % Please edit documentation in R/longdiff.R
 \name{longdiff}
 \alias{longdiff}
-\title{differences in longitudinal data function}
+\title{Differences in Longitudinal Data Function}
 \usage{
-longdiff(data, ID, timevar, var, timeparam, cutoff)
+longdiff(data, ID, timevar, var, timeparam, operator, cutoff)
 }
 \arguments{
-\item{data}{the name of your dataset}
+\item{data}{The name of your dataset}
 
-\item{ID}{the variable name corresponding to individual record or subject IDs}
+\item{ID}{The variable name corresponding to individual record or subject IDs}
 
-\item{timevar}{the variable corresponding to timepoint (year, month, etc) of your data}
+\item{timevar}{The variable corresponding to timepoint (year, month, etc) of your data}
 
-\item{var}{the variable you are interested in looking at differences within}
+\item{var}{The variable you are interested in looking at differences when compared to baseline}
 
-\item{timeparam}{the value of the timepoint you are interested in comparing to baseline (such as the year)}
+\item{timeparam}{The timepoint you are interested in comparing to baseline (such as the year)}
 
-\item{cutoff}{the cutoff value that you would like to set for your variable of interest}
+\item{operator}{The comparison operator you would like to use to compare the difference to the cutoff, this can be "=", "<", ">", "<=", ">=" or "!="}
+
+\item{cutoff}{The cutoff value (numerical) that you would like to set for your variable of interest}
 }
 \value{
-a vector listing all subject IDs that meet the cutoff criteria for your specified variable
+A vector listing all subject IDs that meet the cutoff criteria for your specified variable
 }
 \description{
-a function that returns the IDs of data in which a condition is met that indicates a positive difference in a variable across two timepoints, for use with longitudinal data in long format
+A function that returns the IDs of data in which a condition is met that indicates a positive difference in a variable across two timepoints, for use with longitudinal data in long format
 }
 \examples{
 library(dplyr)
-list <- longdiff(diffdata, record_id, timepoint, test_score, 2002, 0)
+list <- longdiff(diffdata, record_id, timepoint, test_score, 2002, ">", 0)
 list
 }
 \author{
